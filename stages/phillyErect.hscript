@@ -63,7 +63,7 @@ function buildStage()
 	phillyCityLights[0].visible = true;
 
 	////
-	var streetBehind:FlxSprite = new FlxSprite(-40, 50, Paths.image('stages/philly-erect/behindTrain'));
+	var streetBehind:FlxSprite = new FlxSprite(-100, 50, Paths.image('stages/philly-erect/behindTrain'));
 	streetBehind.offset.set(-218, -97);
 	add(streetBehind);
 
@@ -172,7 +172,7 @@ function onUpdate(elapsed:Float){
 }
 function onCreatePost()
 {
-	game.dad.color = 0xF2E8F6;
-	game.boyfriend.color = 0xf2e8f6;
-	game.gf.color = 0xf2e8f6;
+	game.dad.color = 0x877be3;
+	game.boyfriend.color = 0x877be3;
+	game.gf.color = 0x877be3;
 }
