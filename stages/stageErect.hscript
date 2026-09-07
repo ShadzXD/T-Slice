@@ -1,3 +1,4 @@
+//code by manofsomething
 function onLoad(stage, foreground)
 {
 	var backDark:BGSprite = new BGSprite('stage-erect/backDark', 729, -170, 1, 1);
