@@ -23,19 +23,12 @@ function buildStage()
 	add(bg);
 
 	////
-	var city:FlxSprite = new FlxSprite(-10 + 32 * 0.85, 0 + 30 * 0.85, Paths.image('stages/philly-erect/city'));
+	var city:FlxSprite = new FlxSprite(-60 + 32 * 0.85, 40, Paths.image('stages/philly-erect/city'));
 	city.scrollFactor.set(0.3, 0.3);
-	city.scale.set(0.85, 0.85);
+	city.scale.set(0.9, 0.9);
 	city.updateHitbox();
 	add(city);
-	
-	var cityL = cloneSpr(city);
-	cityL.x -= city.width;
-	add(cityL);
-	
-	var cityR = cloneSpr(city);
-	cityR.x += city.width;
-	add(cityR);
+
 	
 	/////
 	lightFadeShader = Paths.getShader("buildingShader");
@@ -46,14 +39,14 @@ function buildStage()
     0xFF932C28,
     0xFF2663AC,
     0xFF502D64];
-	var lightGraphic = Paths.image('stages/philly/window');
+	var lightGraphic = Paths.image('stages/philly-erect/win');
 	for (i in 0...5)
 	{
-		var light:FlxSprite = new FlxSprite(-10, 0, lightGraphic);
+		var light:FlxSprite = new FlxSprite(40, 155, lightGraphic);
 		light.color = phillyLightsColors[i];
 		light.scrollFactor.set(0.3, 0.3);
 		light.visible = false;
-		light.scale.set(0.85, 0.85);
+		light.scale.set(0.9, 0.9);
 		light.updateHitbox();
 		light.shader = lightFadeShader;
 		add(light);
@@ -63,7 +56,7 @@ function buildStage()
 	phillyCityLights[0].visible = true;
 
 	////
-	var streetBehind:FlxSprite = new FlxSprite(-100, 50, Paths.image('stages/philly-erect/behindTrain'));
+	var streetBehind:FlxSprite = new FlxSprite(-520, 100, Paths.image('stages/philly-erect/behindTrain'));
 	streetBehind.offset.set(-218, -97);
 	add(streetBehind);
 
@@ -78,16 +71,9 @@ function buildStage()
 	FlxG.sound.list.add(trainSound);
 
 	/////
-	var street:FlxSprite = new FlxSprite(-40, streetBehind.y, Paths.image('stages/philly-erect/street'));
+	var street:FlxSprite = new FlxSprite(-300, 200, Paths.image('stages/philly-erect/street'));
 	add(street);
 	
-	var streetL = cloneSpr(street);
-	streetL.x -= street.width;
-	add(streetL);
-	
-	var streetR = cloneSpr(street);
-	streetR.x += street.width;
-	add(streetR);
 	
 }
 
