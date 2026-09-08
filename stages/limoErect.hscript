@@ -7,11 +7,15 @@ var limo:FlxSprite;
 var fastCar:FlxSprite;
 var carTmr:FlxTimer;
 var colorShader = Paths.getShader("adjustColor");
-  var mist1:FlxBackdrop;
-  var mist2:FlxBackdrop;
-  var mist3:FlxBackdrop;
-  var mist4:FlxBackdrop;
-  var mist5:FlxBackdrop;
+var mist1:FlxBackdrop;
+var mist2:FlxBackdrop;
+var mist3:FlxBackdrop;
+var mist4:FlxBackdrop;
+var mist5:FlxBackdrop;
+  
+var shootingStarBeat:Int = 0;
+var shootingStarOffset:Int = 2;
+var shootingStar:FlxSprite;
 function onAddSpriteGroups(){
 	game.add(this);
 
@@ -31,6 +35,12 @@ function buildStage()
 	var skyBG:FlxSprite = new FlxSprite(-120, -50, Paths.image('stages/limo-erect/limo-sunset'));
 	skyBG.scrollFactor.set(0.1, 0.1);
 	add(skyBG);
+
+	shootingStar = new FlxSprite(200, 0);
+	shootingStar.frames = Paths.sparrowAtlas('stages/limo-erect/shooting-star');
+	shootingStar.animation.addByPrefix('shooting star', "shooting star", 24);
+	shootingStar.scrollFactor.set(0.12, 0.12);
+	add(shootingStar);
 
 	var bgLimo:FlxSprite = new FlxSprite(-200, 480);
 	bgLimo.frames = Paths.sparrowAtlas('stages/limo-erect/bg-limo');
@@ -204,6 +214,10 @@ function onBeatHit(){
 	if (FlxG.random.bool(5) && fastCarCanDrive)
 		fastCarDrive();
 	
+    if (FlxG.random.bool(1))
+    {
+      doShootingStar(curBeat);
+    }
 }
 function onUpdate(elapsed:Float){
 	mist1.y = 100 + (Math.sin(elapsed) * 200);
@@ -212,3 +226,13 @@ function onUpdate(elapsed:Float){
     mist4.y = -180 + (Math.sin(elapsed * 0.4) * 300);
     mist5.y = -450 + (Math.sin(elapsed * 0.2) * 150);
 }
+  function doShootingStar(beat:Int):Void
+  {
+    shootingStar.x = FlxG.random.int(0, 900);
+    shootingStar.y = FlxG.random.int(40, 20);
+    shootingStar.flipX = FlxG.random.bool(50);
+    shootingStar.animation.play('shooting star');
+
+    shootingStarBeat = beat;
+    shootingStarOffset = FlxG.random.int(4, 8);
+  }
