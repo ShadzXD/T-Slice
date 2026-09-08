@@ -129,9 +129,9 @@ function onCreatePost()
     mist2.alpha = 1;
     mist2.velocity.x = 2100;
     mist1.scale.set(1.3, 1.3);
-    game.add(mist2);
+    add(mist2);
 
-    mist3 = new FlxBackdrop(Paths.image('stages/limo-erect/mist-frontt'), 0x01);
+    mist3 = new FlxBackdrop(Paths.image('stages/limo-erect/mist-front'), 0x01);
     mist3.setPosition(-650, -100);
     mist3.scrollFactor.set(0.8, 0.8);
     mist3.blend = 0;
@@ -147,11 +147,11 @@ function onCreatePost()
     mist4.scrollFactor.set(0.6, 0.6);
     mist4.blend = 0;
     mist4.color = 0xFF9c77c7;
-    mist4.alpha = 1;
+    mist4.alpha = 0.45;
     mist4.velocity.x = 700;
     mist4.scale.set(1.5, 1.5);
 
-    add(mist4);
+    foreground.add(mist4);
 
     mist5 = new FlxBackdrop(Paths.image('stages/limo-erect/mist-front'), 0x01);
     mist5.setPosition(-650, -400);
@@ -185,7 +185,7 @@ function fastCarDrive()
 
 	fastCar.velocity.x = (FlxG.random.int(170, 220) / FlxG.elapsed) * 3;
 	fastCarCanDrive = false;
-	carTmr.start(2, function(tmr:FlxTimer){
+	carTmr.start(5, function(tmr:FlxTimer){
 		resetFastCar();
 	});
 }
@@ -204,4 +204,11 @@ function onBeatHit(){
 	if (FlxG.random.bool(5) && fastCarCanDrive)
 		fastCarDrive();
 	
+}
+function onUpdate(elapsed:Float){
+	mist1.y = 100 + (Math.sin(elapsed) * 200);
+    mist2.y = 0 + (Math.sin(elapsed * 0.8) * 100);
+    mist3.y = -20 + (Math.sin(elapsed * 0.5) * 200);
+    mist4.y = -180 + (Math.sin(elapsed * 0.4) * 300);
+    mist5.y = -450 + (Math.sin(elapsed * 0.2) * 150);
 }
