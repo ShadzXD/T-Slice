@@ -1,4 +1,9 @@
-//code by manofsomething
+import flixel.math.FlxAngle;
+
+var colorShaderBf = Paths.getShader("adjustColor");
+var colorShaderDad = Paths.getShader("adjustColor");
+var colorShaderGf = Paths.getShader("adjustColor");
+
 function onLoad(stage, foreground)
 {
 	var backDark:BGSprite = new BGSprite('stages/stage-erect/backDark', 729, -170, 1, 1);
@@ -38,11 +43,36 @@ function onLoad(stage, foreground)
 	var lightAbove:BGSprite = new BGSprite('stages/stage-erect/lightAbove', 804, -117, 1, 1);
 	lightAbove.blend = 0;
 	foreground.add(lightAbove);
+
+	if(ClientPrefs.shaders != 'None')
+	{
+		colorShaderBf.setFloat("brightness", -23);
+		colorShaderBf.setFloat("hue", 12);
+		colorShaderBf.setFloat("contrast", 7);
+		colorShaderBf.setFloat("saturation", 0);
+
+		colorShaderGf.setFloat("brightness", -23);
+		colorShaderGf.setFloat("hue", 12);
+		colorShaderGf.setFloat("contrast", 7);
+		colorShaderGf.setFloat("saturation", 0);
+
+		colorShaderDad.setFloat("brightness", -33);
+		colorShaderDad.setFloat("hue", -32);
+		colorShaderDad.setFloat("contrast", -23);
+		colorShaderDad.setFloat("saturation", 0);
+
+		game.boyfriend.shader = colorShaderBf;
+		game.gf.shader = colorShaderGf;
+		game.dad.shader = colorShaderDad;
+	}
 }
 
 function onCreatePost()
 {
-	game.dad.color = 0xFFD5D5D3;
-	game.boyfriend.color = 0xFFC7C5C9;
-	game.gf.color = 0xFFEFBFDA;
+	if(ClientPrefs.shaders == 'None')
+	{
+		game.dad.color = 0xFFD5D5D3;
+		game.boyfriend.color = 0xFFC7C5C9;
+		game.gf.color = 0xFFEFBFDA;
+	}
 }
