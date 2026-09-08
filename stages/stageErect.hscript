@@ -1,5 +1,3 @@
-import flixel.math.FlxAngle;
-
 var colorShaderBf = Paths.getShader("adjustColor");
 var colorShaderDad = Paths.getShader("adjustColor");
 var colorShaderGf = Paths.getShader("adjustColor");
