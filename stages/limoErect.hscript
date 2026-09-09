@@ -38,7 +38,7 @@ function buildStage()
 
 	shootingStar = new FlxSprite(200, 0);
 	shootingStar.frames = Paths.sparrowAtlas('stages/limo-erect/shooting-star');
-	shootingStar.animation.addByPrefix('shooting star', "shooting star", 24);
+	shootingStar.animation.addByPrefix('shooting star', "shooting star", 24, false);
 	shootingStar.scrollFactor.set(0.12, 0.12);
 	add(shootingStar);
 
@@ -210,12 +210,17 @@ onCountdownTick = danceDancers;
 
 function onBeatHit(){
 	danceDancers();
-
 	if (FlxG.random.bool(5) && fastCarCanDrive)
 		fastCarDrive();
-	
-    if (FlxG.random.bool(1))
+	if(shootingStarOffset > 0)
+	{
+		shootingStarOffset--;
+		//debugPrint(shootingStarOffset);
+	}
+    if (FlxG.random.bool(5) && shootingStarOffset <= 0)
     {
+		//debugPrint('shoot');
+
       doShootingStar(curBeat);
     }
 }

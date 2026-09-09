@@ -17,11 +17,8 @@
 	"camera_speed": 1.0,
 	
 	"preload": [
-		{"path": "stages/limo/bgLimo"},
-		{"path": "stages/limo/limoDrive"},		
 		{"path": "stages/limo/fastCarLol"},
 		{"path": "stages/limo/limoDancer"},
-		{"path": "stages/limo/limoSunset"},
 		
 		{"path": "carPass0", "type": "SOUND"},
 		{"path": "carPass1", "type": "SOUND"}
