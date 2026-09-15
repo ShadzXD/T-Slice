@@ -6734,7 +6734,7 @@
 			}
 		],
 		"offset": 0,
-		"trollEngine": "l.2.0",
+		"trollEngine": "l.1.0",
 		"hudSkin": "default",
 		"splashSkin": "noteSplashes",
 		"song": "dadbattle-erect",
