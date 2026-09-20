@@ -4,6 +4,8 @@ var phillyCityLights = [];
 var phillyTrain:FlxSprite;
 var trainSound:FlxSound;
 
+var colorShader = Paths.getShader("adjustColor");
+var nightMode = false;
 function cloneSpr(spr)
 {
 	var clone = spr.clone();
@@ -158,7 +160,23 @@ function onUpdate(elapsed:Float){
 }
 function onCreatePost()
 {
-	game.dad.color = 0x877be3;
-	game.boyfriend.color = 0x877be3;
-	game.gf.color = 0x877be3;
+	if(ClientPrefs.shaders != 'None')
+	{
+		colorShader.setFloat("brightness", -5);
+		colorShader.setFloat("hue", -26);
+		colorShader.setFloat("contrast", 0);
+		colorShader.setFloat("saturation", -16);
+
+		game.boyfriend.shader = colorShader;
+		game.gf.shader = colorShader;
+		game.dad.shader = colorShader;
+
+		phillyTrain.shader = colorShader; // v-slice doesn't actually use the same instance for this, but it's literally identical so who cares
+	}
+	else
+	{
+		game.dad.color = 0x877be3;
+		game.boyfriend.color = 0x877be3;
+		game.gf.color = 0x877be3;
+	}
 }
