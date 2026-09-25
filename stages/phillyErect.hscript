@@ -158,6 +158,7 @@ function onUpdate(elapsed:Float){
 		}
 	}
 }
+
 function onCreatePost()
 {
 	if(ClientPrefs.shaders != 'None')
