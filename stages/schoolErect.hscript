@@ -1,0 +1,113 @@
+function onCreate()
+{
+	GameOverSubstate.deathSoundName = 'fnf_loss_sfx-pixel';
+	GameOverSubstate.loopSoundName = 'gameOver-pixel';
+	GameOverSubstate.endSoundName = 'gameOverEnd-pixel';
+
+    if(game.hudSkin == 'default')
+        game.hudSkin = 'pixel';
+}
+
+function roundTo(num, roundFactor){
+	return Math.round(num / 6) * 6;
+}
+
+////
+var bgGirls;
+var shadowShader = Paths.getShader("adjustColor");
+
+function buildStage(){
+	var bgSky:BGSprite = new BGSprite('stages/school-erect/weeb-sky', -300, -120, 0.2, 0.2 );
+	add(bgSky);
+	bgSky.antialiasing = false;
+
+	var repositionShit = -900;
+
+	var weebTreesBack:BGSprite = new BGSprite('stages/school-erect/weeb-back-trees', repositionShit + 100, -60, 0.5, 0.5);
+	weebTreesBack.antialiasing = false;
+	add(weebTreesBack);
+
+	var bgSchool:BGSprite = new BGSprite('stages/school-erect/weeb-school', repositionShit + 150, 20, 0.6, 0.90);
+	add(bgSchool);
+	bgSchool.antialiasing = false;
+
+	var bgStreet:BGSprite = new BGSprite('stages/school-erect/weeb-street', repositionShit, 0, 0.95, 0.95);
+	add(bgStreet);
+	bgStreet.antialiasing = false;
+
+	var widShit = Std.int(bgSky.width * 6);
+
+	if(!ClientPrefs.lowQuality) {
+		var fgTrees:BGSprite = new BGSprite('stages/school-erect/weeb-trees-back', repositionShit + 400, 100, 0.9, 0.9);
+		fgTrees.setGraphicSize(Std.int(widShit * 0.8));
+		fgTrees.updateHitbox();
+		add(fgTrees);
+		fgTrees.antialiasing = false;
+	}
+	var bgTrees:FlxSprite = new FlxSprite(repositionShit + 100, -800);
+	bgTrees.frames = Paths.packerAtlas('stages/school-erect/weeb-trees');
+	bgTrees.animation.add('treeLoop', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 12);
+	bgTrees.animation.play('treeLoop');
+	add(bgTrees);
+	bgTrees.antialiasing = false;
+	
+	if(!ClientPrefs.lowQuality) {
+		var treeLeaves:BGSprite = new BGSprite('stages/school-erect/petals', repositionShit, -40, 1, 1, ['PETALS ALL'], true);
+		treeLeaves.setGraphicSize(widShit - 2);
+		treeLeaves.updateHitbox();
+		add(treeLeaves);
+		treeLeaves.antialiasing = false;
+	}
+
+	bgSky.setGraphicSize(widShit);
+	bgSchool.setGraphicSize(widShit);
+	bgStreet.setGraphicSize(widShit);
+	bgTrees.setGraphicSize(widShit);
+	weebTreesBack.setGraphicSize(widShit);
+
+	bgSky.updateHitbox();
+	bgSchool.updateHitbox();
+	bgStreet.updateHitbox();
+	bgTrees.updateHitbox();
+	weebTreesBack.updateHitbox();
+
+	/*
+	if(!ClientPrefs.lowQuality) {
+		bgGirls = new BackgroundGirls(-100, 190);
+		bgGirls.scrollFactor.set(0.9, 0.9);
+
+		bgGirls.setGraphicSize(Std.int(bgGirls.width * daPixelZoom));
+		bgGirls.updateHitbox();
+		add(bgGirls);
+	}
+	*/
+	
+	for (spr in this.members){
+		spr.setPosition(
+			roundTo(spr.x, 6),
+			roundTo(spr.y, 6)
+		);
+	}
+}
+//shaders are unfinished asf
+function onCreatePost()
+{
+
+   // rim.setAdjustColor(-66, -10, 24, -23);
+	shadowShader.setFloat("hue", -10);
+	shadowShader.setFloat("saturation", -23);
+	shadowShader.setFloat("contrast", 24);
+	shadowShader.setFloat("brightness", -66);
+	shadowShader.setFloat("str", 1);
+	shadowShader.setFloat("ang", 90);
+	shadowShader.setFloat("dist", 5);
+	shadowShader.setFloat("thr", 0.1);
+
+	game.boyfriend.shader = shadowShader;
+	game.gf.shader = shadowShader;
+	game.dad.shader = shadowShader;
+    //rim.color = 0xFF52351d;
+    //rim.attachedSprite = character;
+   // rim.distance = 5;
+}
+
