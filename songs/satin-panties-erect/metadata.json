@@ -3,5 +3,6 @@
 	"modcharter": "",
 	"extraInfo": [],
 	"artist": "Kawai Sprite",
-	"charter": "fabs + Spazkid"
+	"charter": "fabs + Spazkid",
+	"freeplayIcon": "mom", "freeplayBgColor": "#fc96d7"
 }

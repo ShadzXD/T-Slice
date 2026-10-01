@@ -3,5 +3,6 @@
 	"modcharter": "",
 	"extraInfo": [],
 	"artist": "Kohta Takahashi (feat. Kawai Sprite)",
-	"charter": "PhantomArcade + fabs + Spazkid"
+	"charter": "PhantomArcade + fabs + Spazkid",
+	"freeplayIcon": "mom", "freeplayBgColor": "#fc96d7"
 }
