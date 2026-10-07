@@ -52,7 +52,7 @@ function onCreatePost()
 	{
 		colorShader.setFloat("hue", 5);
 		colorShader.setFloat("saturation", 5);
-		//colorShader.setFloat("contrast", 0);
+		colorShader.setFloat("contrast", -5);
 		game.boyfriend.shader = colorShader;
 		game.gf.shader = colorShader;
 		game.dad.shader = colorShader;
